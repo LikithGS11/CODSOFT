@@ -112,12 +112,14 @@
 
   @media (max-width: 768px) {
     
- .grid {
+  
+  .grid {
     display: flex;
     align-items: center;
     justify-content: space-around;
   }
   }
+  
   @media (max-width: 768px) {
   
     .grid {
