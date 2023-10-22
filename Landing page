@@ -1,1 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Basic Calculator</title>
+</head>
+<body>
+    <div class="calculator">
+        <div class="display" id="display">0</div>
+        <button class="btn" onclick="clearDisplay()">C</button>
+        <button class="btn" onclick="appendNumber('7')">7</button>
+        <button class="btn" onclick="appendNumber('8')">8</button>
+        <button class="btn" onclick="appendNumber('9')">9</button>
+        <button class="btn" onclick="appendOperator('+')">+</button>
+        <button class="btn" onclick="appendNumber('4')">4</button>
+        <button class="btn" onclick="appendNumber('5')">5</button>
+        <button class="btn" onclick="appendNumber('6')">6</button>
+        <button class="btn" onclick="appendOperator('-')">-</button>
+        <button class="btn" onclick="appendNumber('1')">1</button>
+        <button class="btn" onclick="appendNumber('2')">2</button>
+        <button class="btn" onclick="appendNumber('3')">3</button>
+        <button class="btn" onclick="appendOperator('*')">*</button>
+        <button class="btn" onclick="appendNumber('0')">0</button>
+        <button class="btn" onclick="calculate()">=</button>
+        <button class="btn" onclick="appendOperator('/')">/</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+.calculator {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+    max-width: 400px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+.display {
+    grid-column: 1 / span 4;
+    font-size: 24px;
+    text-align: right;
+    padding: 10px;
+    background-color: #f4f4f4;
+    border-radius: 5px;
+}
 
+.btn {
+    font-size: 20px;
+    padding: 10px;
+    text-align: center;
+    background-color: #e0e0e0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.btn:hover {
+    background-color: #d0d0d0;
+}
+
+let currentInput = "";
+let currentOperator = "";
+let currentTotal = 0;
+
+function updateDisplay() {
+    document.getElementById("display").textContent = currentInput || "0";
+}
+
+function appendNumber(number) {
+    currentInput += number;
+    updateDisplay();
+}
+
+function appendOperator(operator) {
+    if (currentOperator !== "") {
+        calculate();
+    }
+    currentOperator = operator;
+    currentTotal = parseFloat(currentInput);
+    currentInput = "";
+}
+function calculate() {
+    if (currentOperator === "+") {
+        currentTotal += parseFloat(currentInput);
+    } else if (currentOperator === "-") {
+        currentTotal -= parseFloat(currentInput);
+    } else if (currentOperator === "*") {
+        currentTotal *= parseFloat(currentInput);
+    } else if (currentOperator === "/") {
+        currentTotal /= parseFloat(currentInput);
+    }
+    currentInput = currentTotal.toString();
+    currentOperator = "";
+    updateDisplay();
+}
+function clearDisplay() {
+    currentInput = "";
+    currentOperator = "";
+    currentTotal = 0;
+    updateDisplay();
+}
+updateDisplay();
