@@ -1,114 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Basic Calculator</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <link
+    rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+    crossorigin="anonymous"
+  >
+  <title>Product Landing Page</title>
 </head>
 <body>
-    <div class="calculator">
-        <div class="display" id="display">0</div>
-        <button class="btn" onclick="clearDisplay()">C</button>
-        <button class="btn" onclick="appendNumber('7')">7</button>
-        <button class="btn" onclick="appendNumber('8')">8</button>
-        <button class="btn" onclick="appendNumber('9')">9</button>
-        <button class="btn" onclick="appendOperator('+')">+</button>
-        <button class="btn" onclick="appendNumber('4')">4</button>
-        <button class="btn" onclick="appendNumber('5')">5</button>
-        <button class="btn" onclick="appendNumber('6')">6</button>
-        <button class="btn" onclick="appendOperator('-')">-</button>
-        <button class="btn" onclick="appendNumber('1')">1</button>
-        <button class="btn" onclick="appendNumber('2')">2</button>
-        <button class="btn" onclick="appendNumber('3')">3</button>
-        <button class="btn" onclick="appendOperator('*')">*</button>
-        <button class="btn" onclick="appendNumber('0')">0</button>
-        <button class="btn" onclick="calculate()">=</button>
-        <button class="btn" onclick="appendOperator('/')">/</button>
+  <div id="page-wrapper">
+    <header id="header">
+      <div class="logo">
+        <img
+          id="header-img"
+          src="https://cdn.freecodecamp.org/testable-projects-fcc/images/product-landing-page-logo.png"
+          alt="original trombones logo"
+        />
+      </div>
+      <nav id="nav-bar">
+        <ul>
+          <li><a class="nav-link" href="#features">Features</a></li>
+          <li><a class="nav-link" href="#how-it-works">How It Works</a></li>
+          <li><a class="nav-link" href="#pricing">Pricing</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="container">
+      <!-- Content of your page... -->
     </div>
-    <script src="script.js"></script>
+
+    <section id="hero">
+      <!-- Content of hero section... -->
+    </section>
+
+    <div class="container">
+      <section id="features">
+        <!-- Content of features section... -->
+      </section>
+      <section id="how-it-works">
+        <iframe
+          id="video"
+          height="315"
+          src="https://www.youtube-nocookie.com/embed/y8Yv4pnO7qc?rel=0&amp;controls=0&amp;showinfo=0"
+          frameborder="0"
+          allowfullscreen
+        ></iframe>
+      </section>
+      <section id="pricing">
+        <!-- Content of pricing section... -->
+      </section>
+    </div>
+<form id="form" action="https://www.freecodecamp.com/email-submit"> </form>
+<!-- ... (your previous code) ... -->
+
+    <section id="hero">
+      <h2>Handcrafted, home-made masterpieces</h2>
+      <form id="form" action="https://www.freecodecamp.com/email-submit">
+        <input
+          name="email"
+          id="email"
+          type="email"
+          placeholder="Enter your email address"
+          required
+        />
+        <input id="submit" type="submit" value="Get Started" class="btn" />
+      </form>
+    </section>
+
+<!-- ... (the rest of your code) ... -->
+
+    <footer>
+      <ul>
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <span>Copyright 2023, Original Trombones</span>
+    </footer>
+  </div>
 </body>
 </html>
-body {
+
+#nav-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+  }
+  .nav-link{
+    color: white;
+    background-color: black;
+    display: block;
+    flex-direction: column;
+    position: relative;
+    margin: auto;
+
+}
+  .nav-link::hover{
+    color: rgb(170, 76, 21);
+    background-color: chartreuse;
+    flex-direction: row-reverse;
+  }
+
+  @media (max-width: 768px) {
+    
+ .grid {
     display: flex;
-    justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    margin: 0;
-    background-color: #f0f0f0;
-}
-.calculator {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 10px;
-    max-width: 400px;
-    padding: 20px;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-}
-.display {
-    grid-column: 1 / span 4;
-    font-size: 24px;
-    text-align: right;
-    padding: 10px;
-    background-color: #f4f4f4;
-    border-radius: 5px;
-}
-
-.btn {
-    font-size: 20px;
-    padding: 10px;
-    text-align: center;
-    background-color: #e0e0e0;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-.btn:hover {
-    background-color: #d0d0d0;
-}
-
-let currentInput = "";
-let currentOperator = "";
-let currentTotal = 0;
-
-function updateDisplay() {
-    document.getElementById("display").textContent = currentInput || "0";
-}
-
-function appendNumber(number) {
-    currentInput += number;
-    updateDisplay();
-}
-
-function appendOperator(operator) {
-    if (currentOperator !== "") {
-        calculate();
+    justify-content: space-around;
+  }
+  }
+  @media (max-width: 768px) {
+  
+    .grid {
+      flex-direction: column;
+      color: aquamarine;
     }
-    currentOperator = operator;
-    currentTotal = parseFloat(currentInput);
-    currentInput = "";
-}
-function calculate() {
-    if (currentOperator === "+") {
-        currentTotal += parseFloat(currentInput);
-    } else if (currentOperator === "-") {
-        currentTotal -= parseFloat(currentInput);
-    } else if (currentOperator === "*") {
-        currentTotal *= parseFloat(currentInput);
-    } else if (currentOperator === "/") {
-        currentTotal /= parseFloat(currentInput);
-    }
-    currentInput = currentTotal.toString();
-    currentOperator = "";
-    updateDisplay();
-}
-function clearDisplay() {
-    currentInput = "";
-    currentOperator = "";
-    currentTotal = 0;
-    updateDisplay();
-}
-updateDisplay();
+  }
+  span{
+    color: rgba(252, 1, 118, 0.719);
+    background-color: rgba(71, 30, 255, 0.219);
+  }
